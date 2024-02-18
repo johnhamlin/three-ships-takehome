@@ -12,7 +12,7 @@ type ListReducerAction =
       type: 'ADD_SERVICE_REQUIRED';
       payload: MultiValue<{ value: string; label: string }>;
     }
-  | { type: 'TOGGLE_SORT_BY_DISTANCE' };
+  | { type: 'TOGGLE_SORT_BY_DISTANCE'; payload: boolean };
 
 export default function listReducer(
   state: ListState,
@@ -20,8 +20,6 @@ export default function listReducer(
 ) {
   switch (action.type) {
     case 'UPDATE_MINIMUM_STAR_RATING':
-      console.log('action.payload', action.payload);
-
       return {
         ...state,
         minimumStarRating: action.payload,
@@ -34,7 +32,7 @@ export default function listReducer(
     case 'TOGGLE_SORT_BY_DISTANCE':
       return {
         ...state,
-        sortByDistance: !state.sortByDistance,
+        sortByDistance: action.payload,
       };
     default:
       return state;

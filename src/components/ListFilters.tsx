@@ -9,7 +9,7 @@ interface ListFiltersProps {
     addServiceRequired: (
       payload: MultiValue<{ value: string; label: string }>,
     ) => void;
-    toggleSortByDistance: () => void;
+    toggleSortByDistance: (isSortedByDistance: boolean) => void;
   };
   serviceOptions: { value: string; label: string }[];
 }
@@ -20,15 +20,19 @@ export default function ListFilters({
 }: ListFiltersProps) {
   return (
     <div className="mb-2 flex w-full justify-end gap-3">
+      {/* 
+        Minimum Star Rating Filter
+      */}
       <Select
         placeholder={'Star Rating'}
-        instanceId={'star-rating'}
         // This fixes a warning in the console due to Next.js's SSR
-        components={{
-          Input: (props) => (
-            <components.Input {...props} aria-activedescendant={undefined} />
-          ),
-        }}
+        instanceId={'star-rating'}
+        // ? This is supposed to fix another warning in the console, but it doesn't work
+        // components={{
+        //   Input: (props) => (
+        //     <components.Input {...props} aria-activedescendant={undefined} />
+        //   ),
+        // }}
         classNames={{
           // control: () => 'text-red-500',
           placeholder: () => 'text-red-500', // TODO: For some reason, this doesn't work
@@ -49,6 +53,10 @@ export default function ListFilters({
           changeHandlers.minimumStarRating(parseFloat(selectedOption.value));
         }}
       />
+
+      {/* 
+        Services Offered Filter
+      */}
       <Select
         placeholder="Services Offered"
         instanceId={'services-offered'}
@@ -61,13 +69,20 @@ export default function ListFilters({
         options={serviceOptions}
         isMulti
       />
+
+      {/* 
+        Distance Filter
+      */}
       <Select
         placeholder="Distance"
         inputId="distance"
-        onChange={(): void => {
-          changeHandlers.toggleSortByDistance();
+        isClearable
+        onChange={(_event, { action }): void => {
+          changeHandlers.toggleSortByDistance(action === 'select-option');
         }}
-        options={[{ value: 'distance', label: 'Distance' }]}
+        options={[
+          { value: 'sort by closest to me', label: 'Sort by Closest to Me' },
+        ]}
       />
     </div>
   );

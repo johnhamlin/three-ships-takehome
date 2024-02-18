@@ -10,6 +10,7 @@ interface CardListProps {
 }
 
 export default function CardList({ providersList }: CardListProps) {
+  // Get the filtered list of providers, options for the Select component, and change handlers from the useFilteredList hook
   const {
     filteredProvidersList,
     serviceOptions,
@@ -20,6 +21,7 @@ export default function CardList({ providersList }: CardListProps) {
 
   return (
     <section className="w-full">
+      {/* Render a series of dropdowns that allow the user to filter the list of providers */}
       <ListFilters
         changeHandlers={{
           minimumStarRating,

@@ -56,8 +56,8 @@ export default function useFilteredList(providersList: Provider[]) {
     dispatch({ type: 'ADD_SERVICE_REQUIRED', payload });
   };
 
-  const toggleSortByDistance = () => {
-    dispatch({ type: 'TOGGLE_SORT_BY_DISTANCE' });
+  const toggleSortByDistance = (payload: boolean) => {
+    dispatch({ type: 'TOGGLE_SORT_BY_DISTANCE', payload });
   };
 
   return {
