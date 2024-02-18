@@ -1,3 +1,26 @@
 {
-  "extends": "next/core-web-vitals"
+  "extends": "next/core-web-vitals",
+  "rules": {
+    "import/order": [
+      "warn",
+      {
+        "groups": ["builtin", "external", ["sibling", "parent"], "index"],
+        "pathGroups": [
+          {
+            "pattern": "$app/**",
+            "group": "external"
+          },
+          {
+            "pattern": "~/**",
+            "group": "sibling"
+          }
+        ],
+        "alphabetize": {
+          "order": "asc",
+          "caseInsensitive": true
+        },
+        "newlines-between": "always"
+      }
+    ]
+  }
 }
