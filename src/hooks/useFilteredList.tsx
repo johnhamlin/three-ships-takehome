@@ -13,22 +13,10 @@ export default function useFilteredList(providersList: Provider[]) {
   const [state, dispatch] = useReducer(listReducer, initialState);
 
   /**
-   * Get a set of all the services offered by the providers.
-   * This is used to populate the options for the Select component.
+   * Get the filtered list of providers based on the current state.
+   * Used to render the list of cards.
    * Memoized to prevent running multiple times.
    */
-  const serviceOptions = useMemo(() => {
-    // Get a list of all the services offered by the providers
-    const allServices = providersList.flatMap((provider) => provider.services);
-    // Remove duplicates
-    const uniqueServices = Array.from(new Set(allServices));
-    // Convert to an array of objects for the Select component
-    return uniqueServices.map((service) => ({
-      value: service,
-      label: service,
-    }));
-  }, [providersList]);
-
   const filteredProvidersList = useMemo(() => {
     const filteredList = providersList
       // filter the providersList based on the minimumStarRating
@@ -46,10 +34,29 @@ export default function useFilteredList(providersList: Provider[]) {
       : filteredList;
   }, [providersList, state]);
 
+  /**
+   * Get a set of all the services offered by the providers.
+   * Used to populate the options for the Select component.
+   * Memoized to prevent running multiple times.
+   */
+  const serviceOptions = useMemo(() => {
+    // Get a list of all the services offered by the providers
+    const allServices = providersList.flatMap((provider) => provider.services);
+    // Remove duplicates
+    const uniqueServices = Array.from(new Set(allServices));
+    // Convert to an array of objects for the Select component
+    return uniqueServices.map((service) => ({
+      value: service,
+      label: service,
+    }));
+  }, [providersList]);
+
+  //
+  // Change handlers for the Select components in ListFilters
+  //
   const minimumStarRating = (value: number) => {
     dispatch({ type: 'UPDATE_MINIMUM_STAR_RATING', payload: value });
   };
-
   const addServiceRequired = (
     payload: MultiValue<{ value: string; label: string }>,
   ) => {
