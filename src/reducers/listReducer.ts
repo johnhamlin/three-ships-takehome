@@ -1,3 +1,4 @@
+import type { MultiValue } from 'react-select';
 export const initialState = {
   minimumStarRating: 0,
   servicesRequired: [],
@@ -12,7 +13,10 @@ interface ListState {
 
 type ListReducerAction =
   | { type: 'UPDATE_MINIMUM_STAR_RATING'; payload: number }
-  | { type: 'ADD_SERVICE_REQUIRED'; payload: string }
+  | {
+      type: 'ADD_SERVICE_REQUIRED';
+      payload: MultiValue<{ value: string; label: string }>;
+    }
   | { type: 'TOGGLE_SORT_BY_DISTANCE' };
 
 export default function listReducer(
@@ -30,7 +34,7 @@ export default function listReducer(
     case 'ADD_SERVICE_REQUIRED':
       return {
         ...state,
-        servicesRequired: [...state.servicesRequired, action.payload],
+        servicesRequired: action.payload.map((option) => option.value),
       };
     case 'TOGGLE_SORT_BY_DISTANCE':
       return {

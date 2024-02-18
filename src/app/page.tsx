@@ -14,7 +14,7 @@ export default async function Home() {
     <main className="container mx-auto flex max-w-[45rem] flex-col items-center justify-center gap-2 p-10">
       <h1 className="text-4xl font-bold ">Service Providers Directory</h1>
       <p className="mb-4 italic">A list of service providers in the area.</p>
-      <CardList providersList={providerList} />
+      <CardList providersList={providersList} />
     </main>
   );
 }

@@ -1,18 +1,34 @@
 'use client';
 
-import Select from 'react-select';
+import Select, { components } from 'react-select';
+import type { MultiValue } from 'react-select';
 
 interface ListFiltersProps {
   changeHandlers: {
-    minimumStarRatingChangeHandler: (value: number) => void;
+    minimumStarRating: (value: number) => void;
+    addServiceRequired: (
+      payload: MultiValue<{ value: string; label: string }>,
+    ) => void;
+    toggleSortByDistance: () => void;
   };
+  serviceOptions: { value: string; label: string }[];
 }
 
-export default function ListFilters({ changeHandlers }: ListFiltersProps) {
+export default function ListFilters({
+  changeHandlers,
+  serviceOptions,
+}: ListFiltersProps) {
   return (
     <div className="flex w-full justify-end gap-3">
       <Select
         placeholder={'Star Rating'}
+        instanceId={'star-rating'}
+        // This fixes a warning in the console due to Next.js's SSR
+        components={{
+          Input: (props) => (
+            <components.Input {...props} aria-activedescendant={undefined} />
+          ),
+        }}
         classNames={{
           // control: () => 'text-red-500',
           placeholder: () => 'text-red-500', // TODO: For some reason, this doesn't work
@@ -29,20 +45,28 @@ export default function ListFilters({ changeHandlers }: ListFiltersProps) {
           { value: '1', label: '1+ ⭐️' },
         ]}
         onChange={(selectedOption): void => {
-          console.log('selectedOption', selectedOption);
-
           if (!selectedOption) return;
-          changeHandlers.minimumStarRatingChangeHandler(
-            parseFloat(selectedOption.value),
-          );
+          changeHandlers.minimumStarRating(parseFloat(selectedOption.value));
         }}
       />
       <Select
         placeholder="Services Offered"
-        options={[{ value: 'services', label: 'Services Offered' }]}
+        instanceId={'services-offered'}
+        onChange={(selectedOption): void => {
+          console.log('selectedOption', selectedOption);
+
+          if (!selectedOption) return;
+          changeHandlers.addServiceRequired(selectedOption);
+        }}
+        options={serviceOptions}
+        isMulti
       />
       <Select
         placeholder="Distance"
+        inputId="distance"
+        onChange={(): void => {
+          changeHandlers.toggleSortByDistance();
+        }}
         options={[{ value: 'distance', label: 'Distance' }]}
       />
     </div>
