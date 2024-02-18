@@ -1,9 +1,4 @@
 import type { MultiValue } from 'react-select';
-export const initialState = {
-  minimumStarRating: 0,
-  servicesRequired: [],
-  sortByDistance: false,
-};
 
 interface ListState {
   minimumStarRating: number;
