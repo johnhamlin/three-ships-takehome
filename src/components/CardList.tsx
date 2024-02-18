@@ -1,24 +1,35 @@
-import Card from './Card';
+'use client';
+import { useMemo, useReducer } from 'react';
 
-import { providerList } from '@/model/database';
+import Card from './Card';
+import ListFilters from './ListFilters';
+
+import listReducer, { initialState } from '@/reducers/listReducer';
 
 interface CardListProps {
-  providers: Provider[];
+  providersList: Provider[];
 }
 
-// Because this is a server component, using a server-side function to fetch data from the mock database
-// This improves performance and SEO by pre-rendering the data, and is recommended in Next.js 13+
-async function getProvidersList(): Promise<Provider[]> {
-  // Wrapping in a promise to simulate an async operation
-  return await new Promise((resolve) => resolve(providerList));
-}
+export default function CardList({ providersList }: CardListProps) {
+  const [state, dispatch] = useReducer(listReducer, initialState);
 
-export default async function CardList() {
-  const data = await getProvidersList();
+  const filteredProvidersList = useMemo(() => {
+    return providersList.filter(
+      (provider) => provider.review_score >= state.minimumStarRating,
+    );
+  }, [providersList, state]);
+
+  const minimumStarRatingChangeHandler = (value: number) => {
+    dispatch({ type: 'UPDATE_MINIMUM_STAR_RATING', payload: value });
+  };
+
   return (
-    // TODO: Dropdowns to sort by rating, distance, etc.
-
-    // TODO: Map over providers and render a Card for each one
-    data.map((provider) => <Card key={provider._id} provider={provider} />)
+    <section className="w-full">
+      <ListFilters changeHandlers={{ minimumStarRatingChangeHandler }} />
+      {/* // TODO: Map over providers and render a Card for each one */}
+      {filteredProvidersList.map((provider) => (
+        <Card key={provider._id} provider={provider} />
+      ))}
+    </section>
   );
 }
