@@ -1,7 +1,7 @@
 'use client';
 
 import Select, { components } from 'react-select';
-import type { MultiValue } from 'react-select';
+import type { MultiValue, PlaceholderProps } from 'react-select';
 
 interface ListFiltersProps {
   changeHandlers: {
@@ -13,6 +13,13 @@ interface ListFiltersProps {
   };
   serviceOptions: { value: string; label: string }[];
 }
+
+const customClassName = 'text-xs capitalize py-1';
+
+// Custom classNames for the components that make up each Select component
+const customSubComponentClassNames = {
+  placeholder: () => 'font-extrabold uppercase', // TODO: For some reason, this can't change color
+};
 
 export default function ListFilters({
   changeHandlers,
@@ -33,10 +40,8 @@ export default function ListFilters({
         //     <components.Input {...props} aria-activedescendant={undefined} />
         //   ),
         // }}
-        classNames={{
-          // control: () => 'text-red-500',
-          placeholder: () => 'text-red-500', // TODO: For some reason, this doesn't work
-        }}
+        className={customClassName}
+        classNames={customSubComponentClassNames}
         options={[
           { value: '0', label: 'Any' },
           { value: '4.5', label: '4.5+ ⭐️' },
@@ -68,6 +73,8 @@ export default function ListFilters({
         }}
         options={serviceOptions}
         isMulti
+        className={customClassName}
+        classNames={customSubComponentClassNames}
       />
 
       {/* 
@@ -83,6 +90,8 @@ export default function ListFilters({
         options={[
           { value: 'sort by closest to me', label: 'Sort by Closest to Me' },
         ]}
+        className={customClassName}
+        classNames={customSubComponentClassNames}
       />
     </div>
   );

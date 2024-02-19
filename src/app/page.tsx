@@ -1,4 +1,5 @@
-import { CardList } from '@/components';
+import { StarRatingDesignDebugger } from '@/components/Card/subcomponents/StarRating';
+import { CardList } from '@/components/CardList';
 import { providerList } from '@/model/database';
 
 // Because this is a server component, using a server-side function to fetch data from the mock database
@@ -11,9 +12,7 @@ async function getProvidersList(): Promise<Provider[]> {
 export default async function Home() {
   const providersList = await getProvidersList();
   return (
-    <main className="container mx-auto flex max-w-[45rem] flex-col items-center justify-center gap-2 p-10">
-      <h1 className="text-4xl font-bold ">Service Providers Directory</h1>
-      <p className="mb-4 italic">A list of service providers in the area.</p>
+    <main className="container mx-auto flex max-w-[55rem] flex-col items-center justify-center gap-2 p-10">
       <CardList providersList={providersList} />
     </main>
   );

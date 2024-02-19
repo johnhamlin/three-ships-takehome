@@ -1,7 +1,7 @@
 'use client';
 
-import Card from './Card';
-import ListFilters from './ListFilters';
+import Card from '../Card/Card';
+import ListFilters from '../Card/subcomponents/ListFilters';
 
 import useFilteredList from '@/hooks/useFilteredList';
 
@@ -32,9 +32,11 @@ export default function CardList({ providersList }: CardListProps) {
       />
 
       {/* Render a card for each provider that meets the current filter criteria */}
-      {filteredProvidersList.map((provider) => (
-        <Card key={provider._id} provider={provider} />
-      ))}
+      <div className="flex flex-col gap-4">
+        {filteredProvidersList.map((provider) => (
+          <Card key={provider._id} provider={provider} />
+        ))}
+      </div>
     </section>
   );
 }
