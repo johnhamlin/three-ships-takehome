@@ -58,7 +58,7 @@ export default function MoreInfoIconWithPopover({
       </div>
       {isOpen && (
         <div
-          className="max-w-80 rounded-md border border-green-500 bg-white p-4 text-sm text-gray-500 shadow-md shadow-black/30"
+          className="max-w-80 rounded-md border border-green-500 bg-white p-4 text-gray-500 shadow-md shadow-black/30 sm:text-sm"
           ref={refs.setFloating}
           style={floatingStyles}
           {...getFloatingProps()}

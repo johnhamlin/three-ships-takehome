@@ -59,7 +59,7 @@ export default function StarRating({ rating }: StarRatingProps) {
           </span>
         ))}
       </div>
-      <span className="ml-1 text-sm font-bold">{`${rating}/5`}</span>
+      <span className="ml-1 font-bold sm:text-sm">{`${rating}/5`}</span>
     </>
   );
 }

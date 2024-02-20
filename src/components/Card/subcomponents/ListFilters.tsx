@@ -14,7 +14,7 @@ interface ListFiltersProps {
   serviceOptions: { value: string; label: string }[];
 }
 
-const sharedCustomClassName = 'text-xs capitalize py-1';
+const sharedCustomClassName = 'sm:text-xs capitalize py-1';
 
 // Custom classNames for the components that make up each Select component
 const sharedCustomSubComponentClassNames = {
