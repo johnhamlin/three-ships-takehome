@@ -14,10 +14,10 @@ interface ListFiltersProps {
   serviceOptions: { value: string; label: string }[];
 }
 
-const customClassName = 'text-xs capitalize py-1';
+const sharedCustomClassName = 'text-xs capitalize py-1';
 
 // Custom classNames for the components that make up each Select component
-const customSubComponentClassNames = {
+const sharedCustomSubComponentClassNames = {
   placeholder: () => 'font-extrabold uppercase', // TODO: For some reason, this can't change color
 };
 
@@ -40,8 +40,12 @@ export default function ListFilters({
         //     <components.Input {...props} aria-activedescendant={undefined} />
         //   ),
         // }}
-        className={customClassName}
-        classNames={customSubComponentClassNames}
+
+        isClearable
+        isSearchable={false}
+        className={sharedCustomClassName}
+        classNames={sharedCustomSubComponentClassNames}
+        menuShouldScrollIntoView={false}
         options={[
           { value: '0', label: 'Any' },
           { value: '4.5', label: '4.5+ ⭐️' },
@@ -65,6 +69,7 @@ export default function ListFilters({
       <Select
         placeholder="Services Offered"
         instanceId={'services-offered'}
+        menuShouldScrollIntoView={false}
         onChange={(selectedOption): void => {
           console.log('selectedOption', selectedOption);
 
@@ -73,8 +78,11 @@ export default function ListFilters({
         }}
         options={serviceOptions}
         isMulti
-        className={customClassName}
-        classNames={customSubComponentClassNames}
+        className={sharedCustomClassName}
+        classNames={{
+          ...sharedCustomSubComponentClassNames,
+          menuList: () => 'font-semibold',
+        }}
       />
 
       {/* 
@@ -84,14 +92,16 @@ export default function ListFilters({
         placeholder="Distance"
         inputId="distance"
         isClearable
+        isSearchable={false}
+        menuShouldScrollIntoView={false}
         onChange={(_event, { action }): void => {
           changeHandlers.toggleSortByDistance(action === 'select-option');
         }}
         options={[
           { value: 'sort by closest to me', label: 'Sort by Closest to Me' },
         ]}
-        className={customClassName}
-        classNames={customSubComponentClassNames}
+        className={sharedCustomClassName}
+        classNames={sharedCustomSubComponentClassNames}
       />
     </div>
   );
