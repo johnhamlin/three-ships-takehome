@@ -10,7 +10,5 @@ type LogoProps = Omit<React.ComponentProps<typeof Image>, 'src'> & {
 };
 
 export default function Logo({ slug, alt, ...props }: LogoProps) {
-  console.log(props);
-
   return <Image {...props} src={`${LOGO_URL}${slug}.jpg`} alt={alt} />;
 }

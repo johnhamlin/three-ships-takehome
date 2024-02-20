@@ -66,6 +66,7 @@ export default function StarRating({ rating }: StarRatingProps) {
 
 // This is a debugging component that shows the StarRating component with all possible ratings.
 // I used it to pick the percentages used in partialStarWidthMap.
+// I could have used a for loop, but Copilot made this for me and it works fine.
 export function StarRatingDesignDebugger() {
   return (
     <div className="flex flex-col gap-4">
