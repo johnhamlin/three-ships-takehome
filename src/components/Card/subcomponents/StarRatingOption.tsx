@@ -2,6 +2,11 @@ import { FaStar, FaRegStar, FaStarHalfStroke } from 'react-icons/fa6';
 import { components } from 'react-select';
 import type { OptionProps, SingleValueProps } from 'react-select';
 
+//
+// This file contains custom components for react-select to get around its limitation of only accepting strings for values.
+// That would not allow me to render the FontAwesome stars that I used in the BusinessInfo component, and I wanted the UI to be consistent.
+//
+
 export interface StarRatingOptionType {
   readonly value:
     | '0'
@@ -112,6 +117,7 @@ function StarRatingView({ value }: Pick<StarRatingOptionType, 'value'>) {
   );
 }
 
+// Renders the stars in the dropdown
 export function StarRatingOption({
   ...props
 }: OptionProps<StarRatingOptionType>) {
@@ -124,6 +130,7 @@ export function StarRatingOption({
   );
 }
 
+// Renders the stars in box when a value is selected
 export const StarRatingSingleValue = ({
   children,
   ...props
