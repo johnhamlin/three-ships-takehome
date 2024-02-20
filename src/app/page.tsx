@@ -12,7 +12,7 @@ async function getProvidersList(): Promise<Provider[]> {
 export default async function Home() {
   const providersList = await getProvidersList();
   return (
-    <main className="container mx-auto flex max-w-[55rem] flex-col items-center justify-center gap-2 p-10">
+    <main className=" container mx-auto flex max-w-[55rem] flex-col items-center justify-center gap-2 p-4 sm:p-10">
       <CardList providersList={providersList} />
     </main>
   );

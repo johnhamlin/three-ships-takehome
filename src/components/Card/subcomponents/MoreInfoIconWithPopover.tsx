@@ -20,7 +20,7 @@ interface MoreInfoProps {
   ratingPercentageOfCompanies: number;
 }
 
-export default function MoreInfo({
+export default function MoreInfoIconWithPopover({
   text,
   ratingPercentageOfCompanies,
 }: MoreInfoProps) {
@@ -49,7 +49,7 @@ export default function MoreInfo({
   ]);
 
   return (
-    <>
+    <div className="self-start">
       <div ref={refs.setReference} {...getReferenceProps}>
         <IoIosInformationCircleOutline
           aria-label="More Info"
@@ -85,7 +85,7 @@ export default function MoreInfo({
           </div>
         </div>
       )}
-    </>
+    </div>
   );
 }
 

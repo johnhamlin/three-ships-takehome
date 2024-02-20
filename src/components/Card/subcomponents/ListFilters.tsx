@@ -26,7 +26,7 @@ export default function ListFilters({
   serviceOptions,
 }: ListFiltersProps) {
   return (
-    <div className="mb-2 flex w-full justify-end gap-3">
+    <div className="mb-2 flex w-full flex-col justify-end sm:flex-row sm:gap-3">
       {/* 
         Minimum Star Rating Filter
       */}
