@@ -1,24 +1,33 @@
 'use client';
 
-import Select, { components } from 'react-select';
-import type { MultiValue, PlaceholderProps } from 'react-select';
+import Select from 'react-select';
+import type { ClassNamesConfig, GroupBase, MultiValue } from 'react-select';
+
+import {
+  StarRatingOption,
+  StarRatingOptionType,
+  StarRatingSingleValue,
+} from './StarRatingOption';
 
 interface ListFiltersProps {
   changeHandlers: {
     minimumStarRating: (value: number) => void;
-    addServiceRequired: (
-      payload: MultiValue<{ value: string; label: string }>,
-    ) => void;
+    addServiceRequired: (payload: SelectOptionType) => void;
     toggleSortByDistance: (isSortedByDistance: boolean) => void;
   };
   serviceOptions: { value: string; label: string }[];
 }
 
-const sharedCustomClassName = 'sm:text-xs capitalize py-1';
+const sharedCustomClassName = 'sm:text-sm capitalize py-1';
 
 // Custom classNames for the components that make up each Select component
-const sharedCustomSubComponentClassNames = {
+// ! Don't use this to modify the StarRatingOption or StarRatingSingleValue components
+const sharedCustomSubComponentClassNames: ClassNamesConfig = {
   placeholder: () => 'font-extrabold uppercase', // TODO: For some reason, this can't change color
+  indicatorSeparator: () => 'hidden',
+  dropdownIndicator: () => '!text-blue-500 !pl-0',
+  valueContainer: () => '!pr-1',
+  container: () => 'min-w-40',
 };
 
 export default function ListFilters({
@@ -44,22 +53,46 @@ export default function ListFilters({
         isClearable
         isSearchable={false}
         className={sharedCustomClassName}
-        classNames={sharedCustomSubComponentClassNames}
+        // Have to use the type assertion because the type gets updated by our custom component, but the type safety is more useful in the sharedCustomSubComponentClassNames constant. As long as we don't try to modify the custom StarRatingOption or StarRatingSingleValue components here, we should be fine.
+        classNames={
+          sharedCustomSubComponentClassNames as ClassNamesConfig<
+            StarRatingOptionType,
+            boolean,
+            GroupBase<StarRatingOptionType>
+          >
+        }
         menuShouldScrollIntoView={false}
+        components={{
+          Option: StarRatingOption,
+          SingleValue: StarRatingSingleValue,
+        }}
         options={[
           { value: '0', label: 'Any' },
           { value: '4.5', label: '4.5+ ⭐️' },
-          { value: '4', label: '4+ ⭐️' },
+          { value: '4.0', label: '4+ ⭐️' },
           { value: '3.5', label: '3.5+ ⭐️' },
-          { value: '3', label: '3+ ⭐️' },
+          { value: '3.0', label: '3+ ⭐️' },
           { value: '2.5', label: '2.5+ ⭐️' },
-          { value: '2', label: '2+ ⭐️' },
+          { value: '2.0', label: '2+ ⭐️' },
           { value: '1.5', label: '1.5+ ⭐️' },
-          { value: '1', label: '1+ ⭐️' },
+          { value: '1.0', label: '1+ ⭐️' },
         ]}
         onChange={(selectedOption): void => {
           if (!selectedOption) return;
-          changeHandlers.minimumStarRating(parseFloat(selectedOption.value));
+          // This typing got messy because of the custom components
+          if (Array.isArray(selectedOption)) {
+            selectedOption.forEach((option) => {
+              if ('value' in option) {
+                changeHandlers.minimumStarRating(parseFloat(option.value));
+              }
+            });
+          } else {
+            if ('value' in selectedOption) {
+              changeHandlers.minimumStarRating(
+                parseFloat(selectedOption.value),
+              );
+            }
+          }
         }}
       />
 
@@ -81,7 +114,7 @@ export default function ListFilters({
         className={sharedCustomClassName}
         classNames={{
           ...sharedCustomSubComponentClassNames,
-          menuList: () => 'font-semibold',
+          menuList: () => 'font-medium',
         }}
       />
 
@@ -97,11 +130,12 @@ export default function ListFilters({
         onChange={(_event, { action }): void => {
           changeHandlers.toggleSortByDistance(action === 'select-option');
         }}
-        options={[
-          { value: 'sort by closest to me', label: 'Sort by Closest to Me' },
-        ]}
+        options={[{ value: 'closest to me', label: 'Closest to Me' }]}
         className={sharedCustomClassName}
-        classNames={sharedCustomSubComponentClassNames}
+        classNames={{
+          ...sharedCustomSubComponentClassNames,
+          menuList: () => 'font-medium',
+        }}
       />
     </div>
   );

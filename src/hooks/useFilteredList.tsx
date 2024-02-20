@@ -1,5 +1,4 @@
 import { useMemo, useReducer } from 'react';
-import type { MultiValue } from 'react-select';
 
 import listReducer from '@/reducers/listReducer';
 
@@ -57,9 +56,7 @@ export default function useFilteredList(providersList: Provider[]) {
   const minimumStarRating = (value: number) => {
     dispatch({ type: 'UPDATE_MINIMUM_STAR_RATING', payload: value });
   };
-  const addServiceRequired = (
-    payload: MultiValue<{ value: string; label: string }>,
-  ) => {
+  const addServiceRequired = (payload: SelectOptionType) => {
     dispatch({ type: 'ADD_SERVICE_REQUIRED', payload });
   };
 

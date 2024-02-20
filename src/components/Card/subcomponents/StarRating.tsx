@@ -7,16 +7,16 @@ interface StarRatingProps {
 // These are the widths of the partial star to be rendered on top of the empty star. Straight percentages don't work because the empty star shares an outline with the partial star. The partial star is rendered on top of the empty star and the width is adjusted to show the partial star.
 // I'm sure there's a more programmatic way to do this, but this gives me total control over the width of the partial star.
 const partialStarWidthMap: { [key: string]: string } = {
-  0: '0%',
-  0.1: '27%',
-  0.2: '35%',
-  0.3: '41%',
-  0.4: '46%',
-  0.5: '50%',
-  0.6: '58%',
-  0.7: '62%',
-  0.8: '65%',
-  0.9: '70%',
+  '0': '0%',
+  '0.1': '27%',
+  '0.2': '35%',
+  '0.3': '41%',
+  '0.4': '46%',
+  '0.5': '50%',
+  '0.6': '58%',
+  '0.7': '62%',
+  '0.8': '65%',
+  '0.9': '70%',
 };
 
 export default function StarRating({ rating }: StarRatingProps) {

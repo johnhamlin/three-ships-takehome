@@ -1,5 +1,12 @@
 // Using global.d.ts because I'm not worried about cluttering the global namespace in such a small project.
 
+// The type of the options in the select component
+type SelectOptionType = MultiValue<{
+  value: string;
+  label: string;
+}>;
+
+// Type for the provider data returned from the API
 interface Provider {
   _id: string;
   name: string;

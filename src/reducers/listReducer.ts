@@ -1,5 +1,3 @@
-import type { MultiValue } from 'react-select';
-
 interface ListState {
   minimumStarRating: number;
   servicesRequired: string[];
@@ -10,7 +8,7 @@ type ListReducerAction =
   | { type: 'UPDATE_MINIMUM_STAR_RATING'; payload: number }
   | {
       type: 'ADD_SERVICE_REQUIRED';
-      payload: MultiValue<{ value: string; label: string }>;
+      payload: SelectOptionType[];
     }
   | { type: 'TOGGLE_SORT_BY_DISTANCE'; payload: boolean };
 
