@@ -1,4 +1,4 @@
-import { Span } from 'next/dist/trace';
+import { motion } from 'framer-motion';
 
 import {
   placeholderExperienceAuthor,
@@ -23,7 +23,7 @@ export default function Card({ provider }: CardProps) {
   const isFeaturedPartner = provider.review_score >= 4.8;
 
   return (
-    <div className="flex flex-col">
+    <motion.div className="flex flex-col" layout transition={{ duration: 0.5 }}>
       {isFeaturedPartner && <FeaturedPartnerBanner />}
       <div
         className={
@@ -45,6 +45,6 @@ export default function Card({ provider }: CardProps) {
 
         <SeeMore />
       </div>
-    </div>
+    </motion.div>
   );
 }
