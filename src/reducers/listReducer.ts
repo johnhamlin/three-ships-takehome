@@ -12,6 +12,8 @@ type ListReducerAction =
     }
   | { type: 'TOGGLE_SORT_BY_DISTANCE'; payload: boolean };
 
+// Reducer for the list state
+// I like reducers because they keep the state logic in one place
 export default function listReducer(
   state: ListState,
   action: ListReducerAction,

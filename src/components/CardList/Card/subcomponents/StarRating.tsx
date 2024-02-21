@@ -19,6 +19,7 @@ const partialStarWidthMap: { [key: string]: string } = {
   '0.9': '70%',
 };
 
+// Dynamically renders a star rating based on the rating prop, including partially filled stars for ratings with decimal values and empty stars for ratings less than 5.
 export default function StarRating({ rating }: StarRatingProps) {
   const MAX_STARS = 5;
   const wholeStars = Math.floor(rating);

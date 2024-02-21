@@ -1,3 +1,6 @@
+/**
+ * Returns a JSX element with a blue banner and a white div to create an inset border effect on the Card
+ */
 export default function FeaturedPartnerBanner() {
   return (
     <>

@@ -48,6 +48,9 @@ export default function MoreInfoIconWithPopover({
     role,
   ]);
 
+  // Renders an information icon with a popover containing additional information.
+  // On mobile, it displays the information on tap. On desktop, it displays the information on hover.
+  // The icon is bigger on mobile to make it easier to tap.
   return (
     <div className="sm:self-start">
       <div

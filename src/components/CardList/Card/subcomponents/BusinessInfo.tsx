@@ -10,6 +10,7 @@ interface BusinessInfoProps {
   provider: Provider;
 }
 
+// Renders information about a provider, including their name, review score, address, and badges.
 export default function BusinessInfo({ provider }: BusinessInfoProps) {
   return (
     <>

@@ -30,6 +30,7 @@ const sharedCustomSubComponentClassNames: ClassNamesConfig = {
   container: () => 'min-w-40',
 };
 
+//  Renders a set of Select components for filtering a list based on minimum star rating, services offered, and distance.
 export default function ListFilters({
   changeHandlers,
   serviceOptions,

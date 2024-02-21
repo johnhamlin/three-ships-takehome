@@ -1,5 +1,7 @@
 import { MdKeyboardArrowDown } from 'react-icons/md';
 
+// Renders a "See More" link at the bottom of the Card
+// Functionality not implemented, per the take home instructions
 export default function SeeMore() {
   return (
     <div className="mt-1 flex flex-row self-end">

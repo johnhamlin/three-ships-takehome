@@ -5,6 +5,7 @@ interface ExperiencesProps {
   author: string;
 }
 
+// Renders a section header "Experiences" followed by a div with a gray background, containing the text and author information passed as props
 export default function Experiences({ text, author }: ExperiencesProps) {
   return (
     <>

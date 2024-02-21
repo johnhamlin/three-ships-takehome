@@ -6,6 +6,9 @@ interface BadgesProps {
 }
 
 // I moved this to its own component because it's likely to grow in scope as more badges are added
+
+// Checks if the provider is nearby (based on the distance property being less than 5) and if the provider is popular (based on the review count being greater than or equal to 100).
+// Renders a badge for each of these conditions.
 export default function Badges({ provider }: BadgesProps) {
   const isNearby = provider.distance < 5;
 

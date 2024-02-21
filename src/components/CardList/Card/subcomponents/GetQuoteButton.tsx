@@ -2,6 +2,7 @@ interface GetQuoteButtonProps {
   href: string;
 }
 
+// Renders a button that links to the provider's website
 export default function GetQuoteButton({ href }: GetQuoteButtonProps) {
   return (
     <a href={href} target="_blank" rel="noopener noreferrer" className=" grow">

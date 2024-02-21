@@ -1,3 +1,4 @@
+import { Span } from 'next/dist/trace';
 import { FaStar, FaRegStar, FaStarHalfStroke } from 'react-icons/fa6';
 import { components } from 'react-select';
 import type { OptionProps, SingleValueProps } from 'react-select';
@@ -29,8 +30,8 @@ const StarsContainer = ({ children }: React.PropsWithChildren) => (
 // Map the value of the option to the label that will be displayed
 // The default component only accepts strings, so we need to create a custom component to use our FA icons
 // Could have done this programmatically, but copilot wrote this even faster
-const StarsMap: { [key: string]: string | JSX.Element } = {
-  '0': 'Any',
+const StarsMap: { [key: string]: JSX.Element } = {
+  '0': <span>Any</span>,
   '4.5': (
     <StarsContainer>
       <FaStar />

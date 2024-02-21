@@ -4,6 +4,7 @@ type SectionHeaderProps = React.DetailedHTMLProps<
   HTMLHeadingElement
 >;
 
+// Renders an h3 element with a specific styling to be reused as a section header
 export default function SectionHeader({
   children,
   ...props

@@ -6,6 +6,7 @@ interface ServicesOfferedProps {
   services: string[];
 }
 
+// Renders a section header "Services Offered" followed by a list of services passed as props
 export default function ServicesOffered({ services }: ServicesOfferedProps) {
   return (
     <>

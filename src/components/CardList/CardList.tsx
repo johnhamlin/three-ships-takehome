@@ -1,7 +1,7 @@
 'use client';
 
-import Card from '../Card/Card';
-import ListFilters from '../Card/subcomponents/ListFilters';
+import { Card } from './Card';
+import ListFilters from './Card/subcomponents/ListFilters';
 
 import useFilteredList from '@/hooks/useFilteredList';
 
@@ -9,6 +9,7 @@ interface CardListProps {
   providersList: Provider[];
 }
 
+// Renders a list of providers as Cards, and a series of dropdowns that allow the user to filter the list of providers
 export default function CardList({ providersList }: CardListProps) {
   // Get the filtered list of providers, options for the Select component, and change handlers from the useFilteredList hook
   const {

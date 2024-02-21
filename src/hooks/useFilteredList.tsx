@@ -8,6 +8,7 @@ const initialState = {
   sortByDistance: false,
 };
 
+// A hook to manage the state and logic for filtering the list of providers
 export default function useFilteredList(providersList: Provider[]) {
   const [state, dispatch] = useReducer(listReducer, initialState);
 
@@ -56,6 +57,7 @@ export default function useFilteredList(providersList: Provider[]) {
   const minimumStarRating = (value: number) => {
     dispatch({ type: 'UPDATE_MINIMUM_STAR_RATING', payload: value });
   };
+
   const addServiceRequired = (payload: SelectOptionType) => {
     dispatch({ type: 'ADD_SERVICE_REQUIRED', payload });
   };
