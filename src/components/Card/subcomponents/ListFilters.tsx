@@ -26,7 +26,7 @@ const sharedCustomSubComponentClassNames: ClassNamesConfig = {
   placeholder: () => 'font-extrabold uppercase !text-gray-600', // TODO: For some reason, this can't change color
   indicatorSeparator: () => 'hidden',
   dropdownIndicator: () => '!text-blue-500 !pl-0',
-  valueContainer: () => '!pr-1',
+  valueContainer: () => '!pr-1 uppercase font-extrabold text=gray-600',
   container: () => 'min-w-40',
 };
 
@@ -43,7 +43,7 @@ export default function ListFilters({
         placeholder={'Star Rating'}
         // This fixes a warning in the console due to Next.js's SSR
         instanceId={'star-rating'}
-        // ? This is supposed to fix another warning in the console, but it doesn't work
+        // ? This is supposed to fix another warning in the console, but it doesn't work. The error only shows up in Dev mode, so the client would never see it.
         // components={{
         //   Input: (props) => (
         //     <components.Input {...props} aria-activedescendant={undefined} />
