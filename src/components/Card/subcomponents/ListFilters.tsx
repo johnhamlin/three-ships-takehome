@@ -23,7 +23,7 @@ const sharedCustomClassName = 'sm:text-sm capitalize py-1';
 // Custom classNames for the components that make up each Select component
 // ! Don't use this to modify the StarRatingOption or StarRatingSingleValue components
 const sharedCustomSubComponentClassNames: ClassNamesConfig = {
-  placeholder: () => 'font-extrabold uppercase', // TODO: For some reason, this can't change color
+  placeholder: () => 'font-extrabold uppercase !text-gray-600', // TODO: For some reason, this can't change color
   indicatorSeparator: () => 'hidden',
   dropdownIndicator: () => '!text-blue-500 !pl-0',
   valueContainer: () => '!pr-1',
