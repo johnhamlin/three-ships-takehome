@@ -6,7 +6,7 @@ export default function FeaturedPartnerBanner() {
       </span>
       <span
         // I had to get creative to make the white card appear to have a round border that's inset into the blue banner
-        className="z-10 mx-1 -mb-2 rounded-md border border-white bg-white py-[1px]"
+        className="mx-1 -mb-2 rounded-md border border-white bg-white py-[1px]"
       />
     </>
   );

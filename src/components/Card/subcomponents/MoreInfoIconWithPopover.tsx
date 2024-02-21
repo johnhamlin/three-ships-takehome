@@ -49,8 +49,12 @@ export default function MoreInfoIconWithPopover({
   ]);
 
   return (
-    <div className="self-start">
-      <div ref={refs.setReference} {...getReferenceProps}>
+    <div className="sm:self-start">
+      <div
+        className="-mt-1 text-xl sm:text-xs"
+        ref={refs.setReference}
+        {...getReferenceProps}
+      >
         <IoIosInformationCircleOutline
           aria-label="More Info"
           className="ml-1 self-start"
@@ -58,7 +62,7 @@ export default function MoreInfoIconWithPopover({
       </div>
       {isOpen && (
         <div
-          className="max-w-80 rounded-md border border-green-500 bg-white p-4 text-gray-500 shadow-md shadow-black/30 sm:text-sm"
+          className="max-w-44 rounded-md border border-green-500 bg-white p-4 text-gray-500 shadow-md shadow-black/30 sm:max-w-80 sm:text-sm"
           ref={refs.setFloating}
           style={floatingStyles}
           {...getFloatingProps()}

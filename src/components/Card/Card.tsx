@@ -27,7 +27,7 @@ export default function Card({ provider }: CardProps) {
       {isFeaturedPartner && <FeaturedPartnerBanner />}
       <div
         className={
-          'relative z-0 flex flex-col gap-2 rounded-md border-2 bg-white px-5 py-7 sm:px-14 sm:pb-14 sm:pt-10 ' +
+          'relative flex flex-col gap-2 rounded-md border-2 bg-white px-5 py-7 sm:px-14 sm:pb-14 sm:pt-10 ' +
           (isFeaturedPartner
             ? 'rounded-t-md border-t-2 border-[#0198fe]'
             : 'border-gray-300')

@@ -35,8 +35,7 @@ export default function ListFilters({
   serviceOptions,
 }: ListFiltersProps) {
   return (
-    // z-10 is to make sure the dropdowns are on top of the cards
-    <div className="z-10 mb-2 flex w-full flex-col justify-end sm:flex-row sm:gap-3">
+    <div className=" mb-2 flex w-full flex-col justify-end sm:flex-row sm:gap-3">
       {/* 
         Minimum Star Rating Filter
       */}
